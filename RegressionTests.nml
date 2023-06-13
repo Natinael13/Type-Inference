@@ -1,0 +1,63 @@
+;; step 3
+(check-principal-type 3 int)
+(check-principal-type #t bool)
+(check-principal-type 'hello sym)
+
+;;step 4
+;;IFX
+(check-principal-type (if #t 1 0) int)
+(check-principal-type (if #f #t #f) bool)
+(check-type-error (if 5 1 0))
+(check-type-error (if #t #f 0))
+
+;;step 4
+;;Begin
+(check-principal-type  (begin #t 5) int)
+(check-principal-type  (begin 5 #t) bool)
+(check-principal-type  (begin) unit)
+(check-type-error (begin k #t))
+
+;;step 4
+;;lambda
+(check-principal-type (lambda (x) (+ 1 x)) (int -> int))
+(check-principal-type (lambda (x) #t) (forall ['a] ('a -> bool)))
+(check-type-error (lambda (x) k))
+(check-type-error (lambda (x) (cons x x)))
+
+;;step 5
+;;let
+(val letTest (let ([x  1]) (+ 1 x) ))
+(check-principal-type letTest int)
+(check-principal-type (let ([x (+ 1 1)]) x) int)
+(check-principal-type (let ([z (if #f #f #f)]) z) bool)
+(check-principal-type (let ([z 'a]) z) sym)
+(check-type-error (let ([x k]) x))
+
+;;step 5
+;;letrec
+(check-principal-type (letrec [[x (+ 1 1)]] x) int)
+(check-principal-type(letrec [[z (if #f #f #f)]] z) bool)
+(check-principal-type (letrec [[x (+ 1 1)] [b (+ x 1)]] b) int)
+(check-type-error (letrec [[x k]] x))
+(check-type-error (letrec [[x (+ 1 1)] [y k]] x))
+(check-type-error (letrec [[x (+ 1 1)] [b (+ k 1)]] b))
+
+
+;;step 6
+;;nil
+(check-principal-type '() (forall ['a] (list 'a)))
+
+;;step 6
+;;pair
+(check-principal-type '(1) (list int))
+(check-type-error '(1 #t))
+
+;;step 8
+(check-principal-type map (forall ['a 'b] (('a -> 'b) (list 'a) -> (list 'b))))
+(check-principal-type filter 
+(forall ['a] (('a -> bool) (list 'a) -> (list 'a))))
+(check-principal-type exists? (forall ['a] (('a -> bool) (list 'a) -> bool)))
+(check-principal-type foldr (forall ['a 'b] (('a 'b -> 'b) 'b (list 'a) -> 'b)))
+
+;;step 9 
+;;all 10 tests passed
