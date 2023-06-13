@@ -1,5 +1,9 @@
 # Type-Inference
 
+ml.sml - 
+Created a constraint solver for type inference by implementing function solve : con -> subst in the provided ML file ml.sml. Which takes as argument a constraint of type con and returns an “idempotent” substitution of type subst
+
+Completed the incomplete type inference algorithm for nano-ML in the given ml.sml file. I did this through completeing the typeof function which implements the typing rules for expressions. Specifically completing the definitions of the nested functions ty and literal.
 
 
 # What I Learned
