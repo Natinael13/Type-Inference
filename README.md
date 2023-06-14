@@ -6,7 +6,7 @@ Created a constraint solver for type inference by implementing function solve : 
 Completed the incomplete type inference algorithm for nano-ML in the given nmlTypeInference.sml file. I did this through completeing the typeof function which implements the typing rules for expressions. Specifically completing the definitions of the nested functions ty and literal.
 
 
-# What I Learned
+# What I Gained
 
 * On the programming side, pulled back the curtain on type inference by implementing a constraint solver and type checker for nano-ML
 * Deeper knowldge of the Hindley-Milner type system
